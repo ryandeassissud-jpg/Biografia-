@@ -1,0 +1,470 @@
+@import url('https://googleapis.com');
+
+:root {
+    /* Cores Neutras + Tons Rosa Pastel Moderno + Toque Dourado do Legado */
+    --bg-color-main: #faf6f5;           /* Fundo neutro caloroso e limpo, sem quadriculado */
+    --bg-color-soft: #f4eae7;           /* Fundo secundário suave para divisões de seções */
+    --bg-card: rgba(255, 255, 255, 0.85);/* Cards limpos com efeito glassmorphism claro */
+    
+    --color-pink-pastel: #ff85a7;       /* Rosa Pastel Vivo (Tema Outubro Rosa) */
+    --color-pink-soft: #ffb3c6;         /* Rosa Pastel Suave */
+    --color-gold-ancestral: #cfa83c;    /* Dourado Calmo (Consciência Negra) */
+    
+    --color-text-dark: #2c2220;         /* Texto principal de alto contraste e leitura limpa */
+    --color-text-muted: #6e5e5a;        /* Texto de apoio */
+    
+    /* Fontes Premium */
+    --font-titles: 'Fraunces', serif;   /* Fonte elegante para títulos */
+    --font-body: 'Plus Jakarta Sans', sans-serif;
+}
+
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+    scroll-behavior: smooth; 
+}
+
+body {
+    background-color: var(--bg-color-main); 
+    color: var(--color-text-dark);
+    font-family: var(--font-body); 
+    overflow-x: hidden; 
+    line-height: 1.6;
+}
+
+#neural-bg { 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100vw; 
+    height: 100vh; 
+    z-index: -1; 
+    pointer-events: none; 
+}
+
+/* NAVBAR FLUIDA UNIFICADA */
+.navbar { 
+    position: fixed; 
+    top: 1.5rem; 
+    left: 5%;
+    width: 90%; 
+    padding: 1.2rem 3rem; 
+    background: rgba(255, 255, 255, 0.8); 
+    backdrop-filter: blur(20px); 
+    border: 1px solid rgba(255, 133, 167, 0.2);
+    border-radius: 50px;
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    z-index: 1000;
+    box-shadow: 0 10px 40px rgba(44, 34, 32, 0.05);
+}
+
+.logo { 
+    font-family: var(--font-titles);
+    font-weight: 700; 
+    font-size: 1.4rem; 
+    letter-spacing: -0.5px;
+}
+
+.accent-text {
+    color: var(--color-pink-pastel);
+    font-family: var(--font-titles);
+}
+
+.nav-links { 
+    display: flex; 
+    list-style: none; 
+    gap: 2.5rem; 
+}
+
+.nav-item { 
+    text-decoration: none; 
+    color: var(--color-text-muted); 
+    font-size: 0.95rem; 
+    font-weight: 600; 
+    position: relative;
+    transition: 0.3s ease; 
+}
+
+.nav-item::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 0;
+    height: 2.5px;
+    background: linear-gradient(90deg, var(--color-pink-pastel), var(--color-gold-ancestral));
+    transition: width 0.3s ease;
+}
+
+.nav-item:hover::after, .nav-item.active::after { 
+    width: 100%;
+}
+
+.nav-item:hover, .nav-item.active {
+    color: var(--color-text-dark);
+}
+
+/* COMPONENTES DE SEÇÃO CONTÍNUOS */
+.section-container { 
+    padding: 7rem 10% 4rem; 
+    min-height: 90vh; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+}
+
+.back-soft {
+    background-color: var(--bg-color-soft);
+}
+
+.section-title { 
+    font-family: var(--font-titles);
+    font-size: 3.2rem; 
+    margin-bottom: 2rem;
+    font-weight: 700;
+    line-height: 1.15;
+}
+
+.text-center { 
+    text-align: center; 
+}
+
+/* HERO SECTION VIVA */
+.hero-section { 
+    text-align: center;
+    padding: 13rem 10% 6rem;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.badge-outubro-rosa { 
+    background: linear-gradient(135deg, rgba(255, 133, 167, 0.15), rgba(207, 168, 60, 0.1)); 
+    border: 1px solid var(--color-pink-pastel); 
+    padding: 0.6rem 2.2rem; 
+    border-radius: 50px; 
+    font-size: 0.9rem; 
+    font-weight: 600;
+    color: var(--color-text-dark);
+    margin-bottom: 2.5rem; 
+    display: inline-block;
+    box-shadow: 0 4px 15px rgba(255, 133, 167, 0.1);
+}
+
+.hero-title { 
+    font-family: var(--font-titles);
+    font-size: 4.8rem; 
+    line-height: 1.1; 
+    max-width: 1100px; 
+    margin-bottom: 2rem;
+    font-weight: 700;
+    color: var(--color-text-dark);
+}
+
+.gradient-text { 
+    background: linear-gradient(135deg, var(--color-pink-pastel) 30%, var(--color-gold-ancestral) 80%); 
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent; 
+}
+
+.hero-subtitle { 
+    font-size: 1.25rem; 
+    color: var(--color-text-muted); 
+    max-width: 850px; 
+    margin-bottom: 3.5rem; 
+    font-weight: 400;
+}
+
+/* IMAGENS INTELIGENTES COM PREENCHIMENTO AUTOMÁTICO */
+.img-container-filled {
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    overflow: hidden;
+}
+
+.img-container-filled img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    object-position: center;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    display: block;
+}
+
+.tech-frame { 
+    width: 100%; 
+    height: 520px; 
+    border: 2px solid rgba(255, 133, 167, 0.25); 
+    border-radius: 24px; 
+    box-shadow: 0 20px 50px rgba(44, 34, 32, 0.06);
+    overflow: hidden;
+}
+
+.tech-frame:hover .img-container-filled img {
+    transform: scale(1.04);
+}
+
+/* BOTÕES PREMIUM */
+.btn-group { 
+    display: flex; 
+    gap: 1.5rem; 
+}
+
+.btn { 
+    padding: 1.2rem 3.2rem; 
+    border-radius: 50px; 
+    font-weight: 700; 
+    font-size: 0.95rem; 
+    text-decoration: none; 
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+}
+
+.btn-primary { 
+    background: linear-gradient(135deg, var(--color-pink-pastel), #ecd083); 
+    color: white; 
+    border: none;
+}
+
+.btn-primary:hover { 
+    box-shadow: 0 10px 30px rgba(255, 133, 167, 0.35); 
+    transform: translateY(-5px); 
+}
+
+.btn-secondary { 
+    background: white; 
+    color: var(--color-text-dark); 
+    border: 2px solid var(--color-pink-soft); 
+}
+
+.btn-secondary:hover { 
+    background: rgba(255, 179, 198, 0.1);
+    transform: translateY(-5px); 
+}
+
+/* DIAGRAMAÇÃO INTEGRADA DA BIOGRAFIA */
+.grid-layout { 
+    display: grid; 
+    gap: 5rem; 
+    align-items: center; 
+}
+
+.layout-2col { 
+    grid-template-columns: 1fr 1.1fr; 
+}
+
+.content-card { 
+    background: var(--bg-card); 
+    padding: 4rem; 
+    border-radius: 24px; 
+    border-top: 4px solid var(--color-pink-pastel); 
+    backdrop-filter: blur(15px); 
+    box-shadow: 0 15px 45px rgba(44, 34, 32, 0.04);
+}
+
+.editable-text p {
+    font-size: 1.1rem;
+    color: var(--color-text-muted);
+    margin-bottom: 1.5rem;
+}
+
+.metrics-row {
+    display: flex;
+    gap: 3rem;
+    margin-top: 3rem;
+    border-top: 1px solid rgba(255, 133, 167, 0.15);
+    padding-top: 2rem;
+}
+
+.metric-item .number {
+    display: block;
+    font-family: var(--font-titles);
+    font-size: 2.6rem;
+    font-weight: 700;
+    color: var(--color-gold-ancestral);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+
+.metric-item .label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* LINHA DO TEMPO ACADEMICA INTEGRADA */
+.timeline-v2 {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    padding-left: 2.5rem;
+}
+
+.timeline-v2::before {
+    content: '';
+    position: absolute;
+    left: 4px;
+    top: 0;
+    width: 3px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--color-pink-pastel), var(--color-gold-ancestral), transparent);
+}
+
+.timeline-block {
+    position: relative;
+    margin-bottom: 3.5rem;
+}
+
+.timeline-block::before {
+    content: '';
+    position: absolute;
+    left: -2.5rem;
+    top: 8px;
+    width: 12px;
+    height: 12px;
+    background: var(--color-pink-pastel);
+    border: 3px solid var(--bg-color-main);
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(255, 133, 167, 0.4);
+    z-index: 2;
+}
+
+.timeline-box {
+    background: var(--bg-card);
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(44, 34, 32, 0.03);
+    border: 1px solid rgba(255, 133, 167, 0.1);
+    transition: transform 0.4s ease;
+}
+
+.timeline-box:hover {
+    transform: translateX(8px);
+    border-color: var(--color-pink-pastel);
+}
+
+.timeline-box .year {
+    display: inline-block;
+    background: rgba(255, 133, 167, 0.12);
+    color: var(--color-pink-pastel);
+    padding: 0.3rem 1.2rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.timeline-box h3 {
+    font-family: var(--font-titles);
+    font-size: 1.4rem;
+    margin-bottom: 0.8rem;
+    color: var(--color-text-dark);
+}
+
+.timeline-box p {
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+}
+
+/* UNIFICAÇÃO DA GALERIA */
+.layout-3col { 
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 2.5rem; 
+}
+
+.gallery-card { 
+    background: var(--bg-card);
+    border-radius: 20px; 
+    overflow: hidden; 
+    box-shadow: 0 15px 35px rgba(44, 34, 32, 0.03);
+    border: 1px solid rgba(255, 133, 167, 0.08);
+}
+
+.gallery-card .img-container-filled {
+    height: 260px;
+}
+
+.gallery-info {
+    padding: 2rem;
+}
+
+.gallery-info h3 {
+    font-family: var(--font-titles);
+    font-size: 1.3rem;
+    margin-bottom: 0.6rem;
+    color: var(--color-text-dark);
+}
+
+.gallery-info p {
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+}
+
+/* PAINEL DE CONTATO DE EQUILÍBRIO VISUAL */
+.glass-container { 
+    background: var(--bg-card); 
+    border: 1px solid rgba(255, 133, 167, 0.2); 
+    padding: 6rem 4rem; 
+    border-radius: 32px; 
+    max-width: 950px; 
+    backdrop-filter: blur(20px); 
+    margin: 0 auto; 
+    box-shadow: 0 25px 60px rgba(44, 34, 32, 0.05);
+}
+
+.contact-text {
+    font-size: 1.2rem;
+    color: var(--color-text-muted);
+    margin-bottom: 3rem;
+}
+
+.social-links { 
+    display: flex; 
+    justify-content: center; 
+    gap: 3rem; 
+    margin-top: 3.5rem; 
+}
+
+.network-link { 
+    color: var(--color-text-muted); 
+    text-decoration: none; 
+    font-size: 0.95rem; 
+    font-weight: 600; 
+    transition: 0.3s;
+}
+
+.network-link:hover {
+    color: var(--color-pink-pastel);
+}
+/* SISTEMA ANIMATION REVEAL */
+.reveal-hidden {
+opacity: 0;
+transform: translateY(35px);
+transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.reveal-visible {
+opacity: 1;
+transform: translateY(0);
+}
+/* RESPONSIVIDADE COMPLETA */
+@media (max-width: 1024px) {
+.layout-2col { grid-template-columns: 1fr; }
+.layout-3col { grid-template-columns: 1fr 1fr; }
+.hero-title { font-size: 3.5rem; }
+}
+@media (max-width: 768px) {
+.layout-3col { grid-template-columns: 1fr; }
+.nav-links { display: none; }
+.hero-title { font-size: 2.6rem; }
+.navbar { width: 94%; left: 3%; padding: 1rem 1.5rem; }
+.content-card { padding: 2.5rem; }
+}
